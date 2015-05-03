@@ -1,0 +1,100 @@
+meta {
+    icon: "dialogs/mappaint/josm_small.png";
+}
+
+canvas {
+    default-points: false;
+}
+canvas {
+    fill-color: #ffffff;
+}
+
+/*************************/
+/* create style settings */
+/*************************/
+
+setting::hide_icons {
+  type: boolean;
+  label: tr("Hide icons at low zoom");
+  default: true;
+}
+
+setting::shrink_nodes {
+  type: boolean;
+  label: tr("Less obtrusive node symbols at low zoom");
+  default: true;
+}
+
+setting::highway_labels {
+  type: boolean;
+  label: tr("Display street labels (at high zoom)");
+  default: true;
+}
+
+setting::alt_turn_icons {
+  type: boolean;
+  label: tr("Use alternative turn restriction icon set");
+  default: false;
+}
+
+
+way[highway=motorway],way[highway=motorway_link],
+way[highway=trunk],way[highway=trunk_link],
+way[highway=primary],way[highway=primary_link],
+way[highway=secondary],way[highway=secondary_link],
+way[highway=tertiary],way[highway=tertiary_link],
+way[highway=residential],way[highway=unclassified]  { z-index: 5; text: auto; text-color: black; font-size: 12; text-position: line; text-halo-color: white; text-halo-radius: 2; linecap: round; casing-linecap: round }
+
+way[highway=track]     { z-index: 5; color: #996644; width: 5; dashes: 4, 4; prop_path : 1;}
+way[highway=residential]                            { z-index: 5; color: #E8E8E8; width: 5; casing-color: gray; casing-width: 1; }
+way[highway=road]                      { z-index: 5; color: #E8E8E8; width: 5; casing-color: gray; casing-width: 1; }
+way[highway=tertiary]    { z-index: 6; color: #FEFECB; width: 5; casing-color: #626202; casing-width: 1; }
+way[highway=secondary]    { z-index: 7; color: #FDBF6F; width: 7; casing-color: #b16603; casing-width: 1; }
+way[highway=secondary_link]  { z-index: 7; color: #809BC0; width: 5; casing-color: #b16603; casing-width: 1; }
+way[highway=trunk]          { z-index: 9; color: #7FC97F; width: 7; casing-color: #245424; casing-width: 1; }
+way[highway=motorway]       { z-index: 9; color: #809BC0; width: 7; casing-color: #1e375a; casing-width: 1; }
+
+way[bridge=yes]::bridge1, way[bridge=viaduct]::bridge1, way[bridge=suspension]::bridge1 { z-index: 4; color: white; width: +3; }
+way[bridge=yes]::bridge2, way[bridge=viaduct]::bridge2, way[bridge=suspension]::bridge2 { z-index: 3; color: #444444; width: +6; }
+
+way[railway=rail] { z-index: 6; color: black; width: 5; linecap: round; dashes: 0; }
+way[railway=rail]::dashes { z-index: 7; color: white; width: 3; dashes: 12,12; linecap: round; }
+
+way[highway=pedestrian]!:closed { z-index: 5; color: #ddddee; width: 5; casing-color: #555555; casing-width: 1; casing-dashes: 2,4;}
+
+area { text-anchor-horizontal: center; text-anchor-vertical: center; text-color: black;}
+area[power=plant]   { fill-color: power#FFFF00; }
+
+area[building][!building?!] {
+    fill-color: building#cccccc;
+}
+
+area[building=train_station] { fill-color: #993399; }
+
+area[building=school] { fill-color: #cccccc; }
+
+area[landuse=recreation_ground] {
+    fill-color: green#b1e0c2;
+}
+area[landuse=landfill] {
+    fill-color: landfill#663300;
+}
+area[building=residential] {
+    fill-color: residential#cb9999;
+}
+area[building=commercial] {
+    fill-color: retail#ffc4ee;
+}
+area[building=retail] {
+    fill-color: retail#809BC0;
+}
+area[building=industrial] {
+    fill-color: industrial#FDBF6F;
+}
+node { text-anchor-horizontal: center; text-anchor-vertical: below; text-color: black;}
+node[place] { icon-image: icons/place.png; font-family: DejaVu; text: auto; font-size: 10; font-weight: bold; z-index: 20; }
+way[is_prop_set("prop_area_small_name")] {text-color: black; font-size: 10; text: auto; text-halo: #ffffaa; text-halo-radius: 2; text-position: center;}
+node[amenity=fire_station] { icon-image: icons/amenity_firestation2.n.16.png; z-index: 20; }
+node[amenity=police] { icon-image: icons/amenity_police2.n.16.png; z-index: 20; }
+node[amenity=school] { icon-image: icons/education_school.n.16.png; text-offset:0; text: auto; font-size: 10; z-index: 20; }
+node[amenity=hospital] { icon-image: icons/health_hospital.n.16.png; z-index: 20; }
